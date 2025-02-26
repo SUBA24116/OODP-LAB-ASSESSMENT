@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Doctor {
+private:
+    string name;
+    int id;
+    string specialization;
+    int patients_attended;
+    double consultation_fee;
+    string date_of_joining;
+
+public:
+    // Constructor
+    Doctor(string n, int i, string spec, int patients, double fee, string doj)
+        : name(n), id(i), specialization(spec), patients_attended(patients), consultation_fee(fee), date_of_joining(doj) {}
+
+    // Function to calculate total earnings
+    double calculateEarnings() const {
+        return patients_attended * consultation_fee;
+    }
+
+    // Function to display doctor details if earnings exceed 50,000
+    void displayIfHighEarnings() const {
+        double earnings = calculateEarnings();
+        if (earnings > 50000) {
+            cout << "Doctor ID: " << id << "\n";
+            cout << "Name: " << name << "\n";
+            cout << "Specialization: " << specialization << "\n";
+            cout << "Patients Attended: " << patients_attended << "\n";
+            cout << "Consultation Fee: " << consultation_fee << "\n";
+            cout << "Date of Joining: " << date_of_joining << "\n";
+            cout << "Total Earnings: " << earnings << "\n";
+            cout << "-----------------------------\n";
+        }
+    }
+};
+
+int main() {
+    vector<Doctor> doctors;
+
+    // Sample doctor records
+    doctors.push_back(Doctor("Dr. Smith", 101, "Cardiologist", 120, 500, "12-03-2015"));
+    doctors.push_back(Doctor("Dr. Johnson", 102, "Dermatologist", 60, 400, "22-06-2018"));
+    doctors.push_back(Doctor("Dr. Emily", 103, "Neurologist", 200, 300, "05-09-2012"));
+    doctors.push_back(Doctor("Dr. Brown", 104, "Pediatrician", 90, 700, "19-11-2016"));
+
+    cout << "Doctors with earnings more than 50,000 per month:\n";
+    cout << "--------------------------------------------\n";
+    for (const auto& doctor : doctors) {
+        doctor.displayIfHighEarnings();
+    }
+
+    return 0;
+}
