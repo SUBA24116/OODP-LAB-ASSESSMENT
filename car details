@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+class Car {
+private:
+    string brand;
+    string model;
+    string variant;
+    int manufacturingYear;
+    double price;
+
+public:
+    // Constructor with variant
+    Car(string b, string m, string v, int year, double p)
+        : brand(b), model(m), variant(v), manufacturingYear(year), price(p) {}
+
+    // Constructor without variant
+    Car(string b, string m, int year, double p)
+        : brand(b), model(m), variant("N/A"), manufacturingYear(year), price(p) {}
+
+    // Method to display car details
+    void showCarDetails() const {
+        cout << "Car Details:\n";
+        cout << "Brand: " << brand << "\n";
+        cout << "Model: " << model << "\n";
+        cout << "Variant: " << variant << "\n";
+        cout << "Manufacturing Year: " << manufacturingYear << "\n";
+        cout << "Price: $" << price << "\n";
+        cout << "----------------------------\n";
+    }
+
+    // Method to compare manufacturing years
+    bool isOlderThan(const Car& other) const {
+        return this->manufacturingYear < other.manufacturingYear;
+    }
+
+    // Getter methods for brand and model
+    string getBrand() const { return brand; }
+    string getModel() const { return model; }
+};
+
+int main() {
+    // Creating car objects
+    Car car1("Toyota", "Camry", "XLE", 2018, 25000);
+    Car car2("Honda", "Civic", 2020, 22000);
+
+    // Display car details
+    car1.showCarDetails();
+    car2.showCarDetails();
+
+    // Compare car manufacturing years
+    if (car1.isOlderThan(car2)) {
+        cout << car1.getBrand() << " " << car1.getModel() << " is older than " << car2.getBrand() << " " << car2.getModel() << "\n";
+    } else {
+        cout << car2.getBrand() << " " << car2.getModel() << " is older than " << car1.getBrand() << " " << car1.getModel() << "\n";
+    }
+
+    return 0;
+}
